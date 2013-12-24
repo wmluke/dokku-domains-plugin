@@ -1,4 +1,5 @@
 # dokku-domains-plugin
+
 Plugin to create nginx vhost with multiple domains
 
 ## Installation
@@ -9,6 +10,7 @@ dokku plugins-install
 ```
 
 ## Commands
+
 ```bash
 $ dokku help
     domains <app>                                   display the domains for an app
@@ -16,6 +18,7 @@ $ dokku help
 ```
 
 ## Simple usage
+
 Your need to have app running with the same name!
 
 Create vhost with multiple domains:
