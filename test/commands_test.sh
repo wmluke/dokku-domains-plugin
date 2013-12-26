@@ -44,3 +44,5 @@ assert "$dokku domains rad-app" "radapp.com www.radapp.com"
 
 # end of test suite
 assert_end examples
+
+echo "" > ../test/fixtures/dokku/rad-app/DOMAINS
