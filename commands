@@ -61,13 +61,9 @@ server {
   }
 }
 EOF
-      init_d=$INIT_D
-      if [[ -z $init_d ]]; then
-        init_d=/etc/init.d
-      fi
 
       pluginhook nginx-pre-reload $APP
-      sudo "$init_d/nginx" reload
+      sudo /etc/init.d/nginx reload
     ;;
 
   help)

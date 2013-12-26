@@ -12,7 +12,7 @@ _clean() {
 STUBS=../test/stubs
 PATH="$STUBS:../:$PATH"
 DOKKU_ROOT="../test/fixtures/dokku"
-dokku="PATH=$PATH DOKKU_ROOT=$DOKKU_ROOT INIT_D=$STUBS commands"
+dokku="PATH=$PATH DOKKU_ROOT=$DOKKU_ROOT commands"
 
 # `domains` requires an app name
 assert "$dokku domains" "You must specify an app name"
@@ -35,7 +35,7 @@ assert "$dokku domains:set rad-app" "Usage: dokku domains:set APP DOMAIN1 [DOMAI
 assert_raises "$dokku domains:set rad-app" 1
 
 # `domains:set` should create nginx-domains.conf, call pluginhook, and reload nginx
-assert "$dokku domains:set rad-app radapp.com www.radapp.com" "[stub: pluginhook nginx-pre-reload rad-app]\n[stub: nginx reload]"
+assert "$dokku domains:set rad-app radapp.com www.radapp.com" "[stub: pluginhook nginx-pre-reload rad-app]\n[stub: sudo /etc/init.d/nginx reload]"
 expected=$(< "../test/expected/nginx-domains.conf")
 assert "cat ../test/fixtures/dokku/rad-app/nginx-domains.conf" "$expected"
 
