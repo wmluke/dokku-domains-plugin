@@ -1,6 +1,7 @@
 # dokku-domains-plugin
 
 [![Build Status](https://travis-ci.org/wmluke/dokku-domains-plugin.png?branch=master)](https://travis-ci.org/wmluke/dokku-domains-plugin)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wmluke/dokku-domains-plugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [Dokku](https://github.com/progrium/dokku) plugin to create nginx vhost with multiple domains.
 
