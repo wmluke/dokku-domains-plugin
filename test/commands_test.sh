@@ -1,17 +1,10 @@
 #!/bin/bash
 
-. assert.sh
+. test/assert.sh
 
-
-_clean() {
-    _assert_reset # reset state
-    DEBUG= STOP= INVARIANT=1 DISCOVERONLY= # reset flags
-    eval $* # read new flags
-}
-
-STUBS=../test/stubs
-PATH="$STUBS:../:$PATH"
-DOKKU_ROOT="../test/fixtures/dokku"
+STUBS=test/stubs
+PATH="$STUBS:./:$PATH"
+DOKKU_ROOT="test/fixtures/dokku"
 dokku="PATH=$PATH DOKKU_ROOT=$DOKKU_ROOT commands"
 
 # `domains` requires an app name
@@ -36,8 +29,8 @@ assert_raises "$dokku domains:set rad-app" 1
 
 # `domains:set` should create nginx-domains.conf, call pluginhook, and reload nginx
 assert "$dokku domains:set rad-app radapp.com www.radapp.com" "[stub: pluginhook nginx-pre-reload rad-app]\n[stub: sudo /etc/init.d/nginx reload]"
-expected=$(< "../test/expected/nginx-domains.conf")
-assert "cat ../test/fixtures/dokku/rad-app/nginx-domains.conf" "$expected"
+expected=$(< "test/expected/nginx-domains.conf")
+assert "cat test/fixtures/dokku/rad-app/nginx-domains.conf" "$expected"
 
 # `domains` should read the set domains
 assert "$dokku domains rad-app" "radapp.com www.radapp.com"
@@ -45,4 +38,4 @@ assert "$dokku domains rad-app" "radapp.com www.radapp.com"
 # end of test suite
 assert_end examples
 
-echo "" > ../test/fixtures/dokku/rad-app/DOMAINS
+echo "" > test/fixtures/dokku/rad-app/DOMAINS
