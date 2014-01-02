@@ -29,3 +29,6 @@ Create vhost with multiple domains:
 $ dokku domains:set myawesomeapp.com www.myawesomeapp.com            # Server side
 $ ssh dokku@server domains:set myawesomeapp.com www.myawesomeapp.com # Client side
 ```
+
+## License
+MIT
