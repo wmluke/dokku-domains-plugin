@@ -1,6 +1,8 @@
 # dokku-domains-plugin
 
-[Dokku](https://github.com/progrium/dokku) plugin to create nginx vhost with multiple domains
+[![Build Status](https://travis-ci.org/wmluke/dokku-domains-plugin.png?branch=master)](https://travis-ci.org/wmluke/dokku-domains-plugin)
+
+[Dokku](https://github.com/progrium/dokku) plugin to create nginx vhost with multiple domains.
 
 ## Installation
 
