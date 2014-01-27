@@ -29,7 +29,7 @@ assert_raises "$dokku domains:set rad-app" 1
 
 # `domains:set` should create nginx-domains.conf, call pluginhook, and reload nginx
 assert "$dokku domains:set rad-app radapp.com www.radapp.com" "[stub: pluginhook nginx-pre-reload rad-app]\n[stub: sudo /etc/init.d/nginx reload]"
-expected=$(< "test/expected/nginx-domains.conf")
+expected=$(< "test/expected/rad-app-nginx-domains.conf")
 assert "cat test/fixtures/dokku/rad-app/nginx-domains.conf" "$expected"
 
 # `domains` should read the set domains
