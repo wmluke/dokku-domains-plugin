@@ -1,4 +1,2 @@
-language: c
-compiler:
-  - gcc
+language: bash
 script: make test
