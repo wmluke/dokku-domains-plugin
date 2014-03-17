@@ -75,7 +75,7 @@ server {
   ssl_prefer_server_ciphers on;
 
   location    / {
-    proxy_pass  http://$APP;
+    proxy_pass  http://$APP-domains-ssl-$cert_name;
     proxy_http_version 1.1;
     proxy_set_header Upgrade \$http_upgrade;
     proxy_set_header Connection "upgrade";
