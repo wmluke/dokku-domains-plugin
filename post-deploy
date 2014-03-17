@@ -8,3 +8,8 @@ if [[ -f "$DOMAINS_FILE" ]]; then
   DOMAINS=$(< "$DOMAINS_FILE")
   dokku domains:set $APP $DOMAINS
 fi
+
+if [[ -f "$SSL_DOMAINS_FILE" ]]; then
+  SSL_DOMAINS=$(<"$SSL_DOMAINS_FILE")
+  dokku domains:setssl $APP ${SSL_DOMAINS%,*} ${SSL_DOMAINS#*,}
+fi
