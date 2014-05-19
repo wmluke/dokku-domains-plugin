@@ -1,11 +1,14 @@
 # dokku-domains-plugin
 
-[Dokku](https://github.com/progrium/dokku) plugin to add additional domains to the nginx vhost server_name directive.
+[![Build Status](https://travis-ci.org/wmluke/dokku-domains-plugin.png?branch=master)](https://travis-ci.org/wmluke/dokku-domains-plugin)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wmluke/dokku-domains-plugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+[Dokku](https://github.com/progrium/dokku) plugin to create nginx vhost with multiple domains.
 
 ## Installation
 
 ```bash
-git clone https://github.com/neam/dokku-domains-plugin.git /var/lib/dokku/plugins/domains-plugin
+git clone https://github.com/wmluke/dokku-domains-plugin.git /var/lib/dokku/plugins/domains-plugin
 ```
 
 ## Commands
