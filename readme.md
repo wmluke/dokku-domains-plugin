@@ -1,15 +1,11 @@
 # dokku-domains-plugin
 
-[![Build Status](https://travis-ci.org/wmluke/dokku-domains-plugin.png?branch=master)](https://travis-ci.org/wmluke/dokku-domains-plugin)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wmluke/dokku-domains-plugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
-[Dokku](https://github.com/progrium/dokku) plugin to create nginx vhost with multiple domains.
+[Dokku](https://github.com/progrium/dokku) plugin to add additional domains to the nginx vhost server_name directive.
 
 ## Installation
 
 ```bash
-git clone https://github.com/wmluke/dokku-domains-plugin.git /var/lib/dokku/plugins/domains-plugin
-dokku plugins-install
+git clone https://github.com/neam/dokku-domains-plugin.git /var/lib/dokku/plugins/domains-plugin
 ```
 
 ## Commands
@@ -22,14 +18,21 @@ $ dokku help
 
 ## Simple usage
 
-Your need to have app running with the same name!
-
-Create vhost with multiple domains:
+Create vhost with a second domain:
 
 ```bash
-$ dokku domains:set myawesomeapp.com www.myawesomeapp.com            # Server side
-$ ssh dokku@server domains:set myawesomeapp.com www.myawesomeapp.com # Client side
+$ dokku domains:set <app> myawesomeapp.com            # Server side
+$ ssh dokku@server domains:set <app> myawesomeapp.com # Client side
 ```
+
+Create vhost with multiple additional domains:
+
+```bash
+$ dokku domains:set <app> myawesomeapp.com www.myawesomeapp.com            # Server side
+$ ssh dokku@server domains:set <app> myawesomeapp.com www.myawesomeapp.com # Client side
+```
+
+Note: The original domain set by dokku nginx-vhosts plugin is kept active.
 
 ## License
 MIT
