@@ -48,8 +48,8 @@ case "$1" in
 
     SSL="$DOKKU_ROOT/$APP/ssl/$cert_name"
 
-    [ -f "$SSL.cert" ] || {
-      echo "$SSL.cert does not exist"
+    [ -f "$SSL.crt" ] || {
+      echo "$SSL.crt does not exist"
       exit 1
     }
 
