@@ -9,7 +9,6 @@
 
 ```bash
 git clone https://github.com/wmluke/dokku-domains-plugin.git /var/lib/dokku/plugins/domains-plugin
-dokku plugins-install
 ```
 
 ## Commands
@@ -22,14 +21,21 @@ $ dokku help
 
 ## Simple usage
 
-Your need to have app running with the same name!
-
-Create vhost with multiple domains:
+Create vhost with a second domain:
 
 ```bash
-$ dokku domains:set myawesomeapp.com www.myawesomeapp.com            # Server side
-$ ssh dokku@server domains:set myawesomeapp.com www.myawesomeapp.com # Client side
+$ dokku domains:set <app> myawesomeapp.com            # Server side
+$ ssh dokku@server domains:set <app> myawesomeapp.com # Client side
 ```
+
+Create vhost with multiple additional domains:
+
+```bash
+$ dokku domains:set <app> myawesomeapp.com www.myawesomeapp.com            # Server side
+$ ssh dokku@server domains:set <app> myawesomeapp.com www.myawesomeapp.com # Client side
+```
+
+Note: The original domain set by dokku nginx-vhosts plugin is kept active.
 
 ## License
 MIT
