@@ -2,3 +2,4 @@
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 
 echo "include $DOKKU_ROOT/*/nginx-domains.conf;" > /etc/nginx/conf.d/dokku-domains.conf
+echo "include $DOKKU_ROOT/*/nginx-domains-ssl-*.conf;" > /etc/nginx/conf.d/dokku-domains-ssl.conf
