@@ -9,7 +9,6 @@ if [[ $1 == domains ]] || [[ $1 == domains:* ]]; then
   else
     APP="$2"
     DOMAINS_FILE="$DOKKU_ROOT/$APP/DOMAINS"
-    SSL_DOMAINS_FILE="$DOKKU_ROOT/$APP/DOMAINS_SSL"
 
     # Check if app exists with the same name
     if [ ! -d "$DOKKU_ROOT/$APP" ]; then
