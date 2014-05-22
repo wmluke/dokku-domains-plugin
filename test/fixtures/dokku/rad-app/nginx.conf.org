@@ -1,10 +1,10 @@
-upstream nifty-app-domains { server 127.0.0.1:3455; }
+upstream rad-app { server 127.0.0.1:3456; }
 server {
   listen      [::]:80;
   listen      80;
-  server_name nifty.com www.nifty.com;
+  server_name rad-app.example.com;
   location    / {
-    proxy_pass  http://nifty-app-domains;
+    proxy_pass  http://rad-app;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";

@@ -7,6 +7,9 @@ PATH="$STUBS:./:$PATH"
 DOKKU_ROOT="test/fixtures/dokku"
 dokku="PATH=$PATH DOKKU_ROOT=$DOKKU_ROOT commands"
 
+cp "test/fixtures/dokku/rad-app/nginx.conf.org" "test/fixtures/dokku/rad-app/nginx.conf"
+cp "test/fixtures/dokku/secure-app/nginx.conf.org" "test/fixtures/dokku/secure-app/nginx.conf"
+
 # `domains` requires an app name
 assert "$dokku domains" "You must specify an app name"
 assert_raises "$dokku domains" 1
@@ -27,23 +30,24 @@ assert_raises "$dokku domains:set foo" 1
 assert "$dokku domains:set rad-app" "Usage: dokku domains:set APP DOMAIN1 [DOMAIN2 ...]\nMust specify a DOMAIN."
 assert_raises "$dokku domains:set rad-app" 1
 
-# `domains:set` should create nginx-domains.conf, call pluginhook, and reload nginx
+# `domains:set` should modify nginx.conf, call pluginhook, and reload nginx
 assert "$dokku domains:set rad-app radapp.com www.radapp.com" "[stub: pluginhook nginx-pre-reload rad-app]\n[stub: sudo /etc/init.d/nginx reload]"
-expected=$(< "test/expected/rad-app-nginx-domains.conf")
-assert "cat test/fixtures/dokku/rad-app/nginx-domains.conf" "$expected"
+expected=$(< "test/expected/rad-app-nginx.conf")
+assert "cat test/fixtures/dokku/rad-app/nginx.conf" "$expected"
 
 # `domains` should read the set domains
 assert "$dokku domains rad-app" "radapp.com www.radapp.com"
 
-assert "$dokku domains:setssl secure-app vault-it vault.it www.vault.it " "[stub: pluginhook nginx-pre-reload secure-app]\n[stub: sudo /etc/init.d/nginx reload]"
-expected=$(< "test/expected/secure-app-nginx-domains-ssl-vault-it.conf")
-assert "cat test/fixtures/dokku/secure-app/nginx-domains-ssl-vault-it.conf" "$expected"
+assert "$dokku domains:set secure-app vault.it www.vault.it " "[stub: pluginhook nginx-pre-reload secure-app]\n[stub: sudo /etc/init.d/nginx reload]"
+expected=$(< "test/expected/secure-app-nginx.conf")
+assert "cat test/fixtures/dokku/secure-app/nginx.conf" "$expected"
 
-assert "$dokku domains secure-app" "vault-it, vault.it www.vault.it"
+assert "$dokku domains secure-app" "vault.it www.vault.it"
 
 # end of test suite
 assert_end examples
 
 echo "" > test/fixtures/dokku/rad-app/DOMAINS
-echo "" > test/fixtures/dokku/secure-app/DOMAINS_SSL
-rm "test/fixtures/dokku/secure-app/nginx-domains-ssl-vault-it.conf"
+echo "" > test/fixtures/dokku/secure-app/DOMAINS
+rm "test/fixtures/dokku/rad-app/nginx.conf"
+rm "test/fixtures/dokku/secure-app/nginx.conf"

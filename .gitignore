@@ -1,2 +1,2 @@
 .idea
-test/fixtures/dokku/rad-app/nginx-domains.conf
+test/fixtures/dokku/*-app/nginx.conf
