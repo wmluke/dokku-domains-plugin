@@ -5,6 +5,9 @@
 
 [Dokku](https://github.com/progrium/dokku) plugin to create nginx vhost with multiple domains.
 
+## Deprecation Notice
+As of v0.3.10, Dokku ships with a built-in [domains plugin](http://progrium.viewdocs.io/dokku/nginx), which can also support SSL.  To uninstall this plugin, see [#15](https://github.com/wmluke/dokku-domains-plugin/issues/15).
+
 ## Installation
 
 ```bash
