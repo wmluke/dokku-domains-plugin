@@ -37,13 +37,14 @@ case "$1" in
     fi
 
     domains="${*:3}"
+    IP=$(< "$DOKKU_ROOT/$APP/IP")
     PORT=$(< "$DOKKU_ROOT/$APP/PORT")
 
     echo "$domains" > $DOMAINS_FILE
 
     # default nginx.conf
   cat<<EOF > $DOKKU_ROOT/$APP/nginx-domains.conf
-upstream $APP-domains { server 127.0.0.1:$PORT; }
+upstream $APP-domains { server $IP:$PORT; }
 server {
   listen      [::]:80;
   listen      80;
